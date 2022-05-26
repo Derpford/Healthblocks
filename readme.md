@@ -1,6 +1,6 @@
 # Healthblocks
 
-This mod recreates the block-based health regeneration from Wolfenstein: The New Order, with plenty of cvars to configure exactly how it works.
+This mod recreates the block-based health regeneration from Wolfenstein: The New Order in GZDoom, with plenty of cvars to configure exactly how it works.
 By default, if you have not taken damage for 3 seconds, you will regenerate 1 health every 7 ticks, up to the nearest 50, capping at your starting health.
 (The block size was chosen for Nightmare Logic's HUD, which has health in blocks of 50.)
 
