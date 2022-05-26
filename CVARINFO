@@ -1,0 +1,4 @@
+server int hblock_size = 50;
+server int hblock_amount = 1;
+server int hblock_delay = 105;
+server int hblock_tick = 7;
