@@ -5,8 +5,9 @@ class HealthBlockHandler : EventHandler {
     CVar hbdelay; // how long after damage to not heal
     CVar hbsize; // the size of a health block
     CVar hbamount; // how much to heal each time
+    CVar hbover; // Give health bonuses so that you can overheal?
     
-    override void WorldLoaded(WorldEvent e) {
+    override void OnRegister() {
         timers.resize(MAXPLAYERS); // one array per player
         // negative = waiting on damage
         // positive = ticking toward heals
@@ -17,6 +18,7 @@ class HealthBlockHandler : EventHandler {
         hbdelay = CVar.GetCVar("hblock_delay");
         hbsize = CVar.GetCVar("hblock_size");
         hbamount = CVar.GetCVar("hblock_amount");
+        hbover = CVar.GetCVar("hblock_over");
     }
 
     override void WorldTick() {
@@ -31,7 +33,10 @@ class HealthBlockHandler : EventHandler {
                         // We're not sitting on a breakpoint. Heal up!
                         int delta = block - (hp % block);
                         console.printf("Distance to next block: "..delta);
-                        plr.mo.GiveInventory("Health",min(delta, hbamount.GetInt()));
+                        // plr.mo.GiveInventory("Health",min(delta, hbamount.GetInt()));
+                        if (hbover.GetBool() || hp < plr.mo.SpawnHealth()) {
+                            plr.mo.health = min(plr.mo.health+delta, plr.mo.health+hbamount.GetInt());
+                        }
                     }
                     timers[i] = min(timers[i],0);
                 }
