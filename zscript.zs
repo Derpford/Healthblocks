@@ -33,10 +33,9 @@ class HealthBlockHandler : EventHandler {
                         // We're not sitting on a breakpoint. Heal up!
                         int delta = block - (hp % block);
                         console.printf("Distance to next block: "..delta);
-                        // plr.mo.GiveInventory("Health",min(delta, hbamount.GetInt()));
-                        if (hbover.GetBool() || hp < plr.mo.SpawnHealth()) {
-                            plr.mo.health = min(plr.mo.health+delta, plr.mo.health+hbamount.GetInt());
-                        }
+                        int maxhp = plr.mo.SpawnHealth();
+                        if (hbover.GetBool()) { maxhp = int.max; }
+                        plr.mo.GiveBody(min(delta, hbamount.GetInt()),maxhp);
                     }
                     timers[i] = min(timers[i],0);
                 }
