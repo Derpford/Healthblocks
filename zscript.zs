@@ -1,5 +1,5 @@
 version "4.6.0"
-class HealthBlockHandler : EventHandler {
+class HealthBlockHandler : StaticEventHandler {
     Array<int> timers;
     CVar hbtick; // how many ticks between heals
     CVar hbdelay; // how long after damage to not heal
