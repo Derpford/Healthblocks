@@ -1,11 +1,11 @@
 version "4.6.0"
-class HealthBlockHandler : StaticEventHandler {
+class HealthBlockHandler : EventHandler {
     Array<int> timers;
-    CVar hbtick; // how many ticks between heals
-    CVar hbdelay; // how long after damage to not heal
-    CVar hbsize; // the size of a health block
-    CVar hbamount; // how much to heal each time
-    CVar hbover; // Give health bonuses so that you can overheal?
+    transient CVar hbtick; // how many ticks between heals
+    transient CVar hbdelay; // how long after damage to not heal
+    transient CVar hbsize; // the size of a health block
+    transient CVar hbamount; // how much to heal each time
+    transient CVar hbover; // Give health bonuses so that you can overheal?
     
     override void OnRegister() {
         timers.resize(MAXPLAYERS); // one array per player
