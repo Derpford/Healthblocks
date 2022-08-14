@@ -32,7 +32,7 @@ class HealthBlockHandler : EventHandler {
                     if (hp % block != 0) {
                         // We're not sitting on a breakpoint. Heal up!
                         int delta = block - (hp % block);
-                        console.printf("Distance to next block: "..delta);
+                        // console.printf("Distance to next block: "..delta);
                         int maxhp = plr.mo.SpawnHealth();
                         if (hbover.GetBool()) { maxhp = int.max; }
                         plr.mo.GiveBody(min(delta, hbamount.GetInt()),maxhp);
@@ -46,7 +46,7 @@ class HealthBlockHandler : EventHandler {
     override void WorldThingDamaged(WorldEvent e) {
         if (e.Thing is "PlayerPawn") {
             timers[e.Thing.PlayerNumber()] = hbdelay.GetInt() * -1;
-            console.printf("PNum: "..e.Thing.PlayerNumber());
+            // console.printf("PNum: "..e.Thing.PlayerNumber());
         }
     }
 }
